@@ -112,7 +112,7 @@ def hierarchical_risk_parity(
     ۳. دو نیم کردن بازگشتی (Recursive Bisection)
     """
     cov = returns_df.cov().values
-    corr = returns_df.corr().fillna(0.0).values
+    corr = returns_df.corr().fillna(0.0).to_numpy(dtype=float, copy=True)
     np.fill_diagonal(corr, 1.0)
 
     dist_matrix = np.sqrt(np.clip((1.0 - corr) / 2.0, 0.0, 1.0))
